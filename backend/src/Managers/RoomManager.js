@@ -7,7 +7,9 @@ export class RoomManager{
     }
 
     createRoom(user1, user2){
-        const roomId = this.generate_roomId();
+        console.log("inside creating room ")
+
+        const roomId = this.generate_roomId().toString();
         
         this.#rooms.set(roomId,{
             user1,
@@ -20,10 +22,18 @@ export class RoomManager{
 
 
     }
+
+    deleteRoom(roomId){
+        const room = this.#rooms.find(x=> x.roomId === roomId)
+        console.log("user left from this room ",room)
+
+        // if()
+    }
     onOffer(roomId,sdp){
-        const user2 = this.#rooms.get(roomId).user1
+        const user2 = this.#rooms.get(roomId).user2 
         user2.socket.emit("offer",{
-            sdp
+            sdp,
+            roomId
         })
 
 
@@ -31,12 +41,17 @@ export class RoomManager{
 
     onAnswer(roomId,sdp){
         const user1 = this.#rooms.get(roomId).user1
-        user1.socket.emit("offer",{
-            sdp
+        user1.socket.emit("answer",{
+            sdp,
+            roomId
         })
     }
 
     generate_roomId(){
         return GLOBAL_ROOMID++;
     }
+
+
+
+
 }

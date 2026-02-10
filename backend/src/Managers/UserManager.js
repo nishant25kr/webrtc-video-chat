@@ -1,4 +1,4 @@
-import { RoomManager } from "./RoomManager";
+import { RoomManager } from "./RoomManager.js";
 
 export class UserManager {
     #users;
@@ -16,36 +16,57 @@ export class UserManager {
             { name, socket }
         )
         this.#queue.push(socket.id);
-        this.clearQueue()
-        this.initHandlers()
+        // socket.send("lobby")
+        this.clearQueue(socket)
+        this.initHandlers(socket)
     }
 
     removeUser(socketId) {
-        this.#users = this.#users.filter(x => x.socket.id === socketId)
+        const user = this.#users.find(x => x.socket.id === socketId)
+        if(!user){
+
+        }
+        this.#users = this.#users.filter(x => x.socket.id !== socketId)
         this.#queue.filter(x => x.id === socketId)
     }
 
-    clearQueue() {
+    clearQueue(socket) {
+        // console.log("inside clear")
+        // console.log(this.#queue.length)        
+        
         if (this.#queue.length < 2) return;
-        const user1 = this.#users.find(x => x.socket.id === this.#queue.pop()?.socket.id)
-        const user2 = this.#users.find(x => x.socket.id === this.#queue.pop()?.socket.id)
+        // console.log(this.#queue.length)
+        
+        const id1 = this.#queue.pop()
+        const id2 = this.#queue.pop()
+        const user1 = this.#users.find(x => x.socket.id === id1)
+        const user2 = this.#users.find(x => x.socket.id === id2)
+
+        // console.log(user1)
+        // console.log(user2)
 
         if (!user1 || !user2) {
-            reutrn;
+            return;
         }
 
 
         const room = this.#roomManager.createRoom(user1, user2);
+
+        this.clearQueue(socket)
 
 
 
     }
 
     initHandlers(socket) {
+        
+        
         socket.on("offer", ({ sdp, roomId }) => {
+            console.log("inside offer")
             this.#roomManager.onOffer(roomId, sdp);
         })
         socket.on("answer", ({ sdp, roomId }) => {
+            console.log("inside offer answer")
             this.#roomManager.onAnswer(roomId, sdp);
         })
     }

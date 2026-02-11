@@ -16,7 +16,7 @@ export class UserManager {
             { name, socket }
         )
         this.#queue.push(socket.id);
-        // socket.send("lobby")
+        socket.send("lobby")
         this.clearQueue(socket)
         this.initHandlers(socket)
     }
@@ -68,6 +68,9 @@ export class UserManager {
         socket.on("answer", ({ sdp, roomId }) => {
             console.log("inside offer answer")
             this.#roomManager.onAnswer(roomId, sdp);
+        })
+        socket.on("add-ice-candidate",({candidate, roomId, type})=>{
+            this.#roomManager.onIceCandidate(roomId, socket.id, candidate, type) 
         })
     }
 

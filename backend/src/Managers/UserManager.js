@@ -54,20 +54,16 @@ export class UserManager {
 
         this.clearQueue(socket)
 
-
-
     }
 
     initHandlers(socket) {
-        
-        
         socket.on("offer", ({ sdp, roomId }) => {
             console.log("inside offer")
-            this.#roomManager.onOffer(roomId, sdp);
+            this.#roomManager.onOffer(roomId, sdp, socket.id);
         })
         socket.on("answer", ({ sdp, roomId }) => {
             console.log("inside offer answer")
-            this.#roomManager.onAnswer(roomId, sdp);
+            this.#roomManager.onAnswer(roomId, sdp, socket.id);
         })
         socket.on("add-ice-candidate",({candidate, roomId, type})=>{
             this.#roomManager.onIceCandidate(roomId, socket.id, candidate, type) 

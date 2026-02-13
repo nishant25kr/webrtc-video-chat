@@ -158,29 +158,6 @@ npm run dev
 
 ---
 
-## 📂 Project Structure
-
-```
-omegle-clone/
-│
-├── client/                  # Frontend React application
-│   ├── src/
-│   │   ├── App.jsx         # Main app component
-│   │   ├── Room.jsx        # Video chat room component
-│   │   └── main.jsx        # Entry point
-│   ├── package.json
-│   └── vite.config.js
-│
-├── server/                  # Backend Node.js server
-│   ├── index.js            # Server entry point
-│   ├── UserManager.js      # Queue and user management
-│   ├── RoomManager.js      # Room creation and cleanup
-│   └── package.json
-│
-└── README.md               # You are here!
-```
-
----
 
 ## 🔧 Configuration
 
@@ -281,11 +258,6 @@ Contributions are welcome! This is a learning project, so improvements of all ki
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - feel free to use it for learning and experimentation.
-
----
 
 ## 🧑‍💻 Author
 
@@ -293,8 +265,8 @@ This project is licensed under the MIT License - feel free to use it for learnin
 
 Built to explore WebRTC, real-time systems, and peer-to-peer architecture.
 
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)
+- GitHub: [@your-username](https://github.com/nishant25kr)
+- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/nishant-kumar-239003232/)
 
 ---
 

@@ -55,8 +55,8 @@ Perfect for understanding WebRTC signaling, peer-to-peer connections, and real-t
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/your-username/omegle-clone.git
-cd omegle-clone
+git clone https://github.com/nishant25kr/webrtc-video-chat
+cd webrtc-video-chat
 ```
 
 **2. Start the backend server**
